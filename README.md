@@ -1,5 +1,5 @@
 # CS-353
-CS 353 - Scientific Papers Data Management System
+CS 353 Project - Scientific Papers Data Management System
 
 Spring 2018
 
