@@ -1,3 +1,4 @@
+
 <?php
 ?>
 <!DOCTYPE html>
@@ -5,7 +6,7 @@
 <head>  <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="random.css">
@@ -37,14 +38,14 @@
                                   <li class="nav-item">
                                         <a class="nav-link" href="review.php">Review</a>
                                 </li>
-                                 <li class="nav-item">
+                                 <li class="nav-item active">
                                         <a class="nav-link" href="endorsement.php">Endorsement</a>
                                 </li>
                                 <li class="nav-item">
                                         <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
                                 </li>
 								<li class="nav-item">
-                                        <a class="nav-link" href="about.php">Logout</a>
+                                        <a class="nav-link" href="index.php">Logout</a>
                                 </li>
 								<li class="nav-item">
                                         <div class="dropdown">               
@@ -63,38 +64,36 @@
         <br>
         <div class="container">
                 <div class="jumbotron">
-                        <h1 class="display-4">Assign Paper</h1>
-                        <p class="lead">Succesfully assign the paper to the reviewers to be chosen!</p>
+                        <h1 class="display-4">Endorse Skills</h1>
+                        <p class="lead">Endorse the skills of the author chosen!</p>
                         <hr class="my-4">
-                        <p> Assign paper page is designed for editors exclusively, allowing them to assign the chosen paper to be reviewed by specific authors.
+                        <p> Any user may endorse the skills of a chosen author.  
                         </p>
                 </div>
                 <div class="container">
                         <form action="login_post.php" method="post">
-                        		<div class="row">
+                                <div class="row">
                                         <div class="form-group col-sm-4 col-centered">
-                                                <label>Paper: Adventure of joe</label>
+                                                <label><b>Author Chosen:</b> Arif Usta</label> <br>
                                         </div>
+                                  
+                                  
                                 </div>
                                 
                                 <div class="row">
-                                        <div class="form-group col-sm-4 col-centered">
-                                                <label for="inputUsername">Search For Reviewers</label>
-                                                <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Reviewer Name">
-                                        </div>
-                                </div>
-
-                                <div class="row">
-                                        <div class="form-group col-sm-4 col-centered">
-                                                <br>
-                                                <label for="exampleInputPassword1">Confirm your password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                                <div class="text-center">
-                                                        <br>
-                                                        <button type="submit" class="btn btn-success">Assign</button>
-                                                </div>
-                                        </div>
-                                </div>
+                                        <div class="form-group col-sm-4 col-centered" id="checkboxes">
+                                                <form action="/action_page.php" method="get">
+                                                  <input type="checkbox" name="vehicle" value="Bike"> Grammar<br>
+                                                  <input type="checkbox" name="vehicle" value="Car" > Sentence structure<br>
+                                                  <input type="checkbox" name="vehicle" value="Car" > Vocabulary<br>
+                                                  <input type="checkbox" name="vehicle" value="Car" > Writing style<br>
+                                                  <input type="checkbox" name="vehicle" value="Car" > Correct expressions<br><br>
+                                                  <button type = "submit"style="font-size:18px">Endorse <i class="fa fa-thumbs-up"></i></button>
+                                                </form>
+                                                <br><br>
+                                        </div>  
+                                        
+                                </div>                         
                         </form>
                 </div>
         </div>

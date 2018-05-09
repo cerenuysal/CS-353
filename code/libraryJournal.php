@@ -23,7 +23,7 @@
                                 <li class="nav-item">
                                         <a class="nav-link" href="publish.php">Publish</a>
                                 </li>
-								<li class="nav-item active">
+								<li class="nav-item">
                                         <a class="nav-link" href="library.php">Library</a>
                                 </li>                               
                                 <li class="nav-item">
@@ -38,11 +38,11 @@
                                  <li class="nav-item">
                                         <a class="nav-link" href="endorsement.php">Endorsement</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                         <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
                                 </li>
 								<li class="nav-item">
-                                        <a class="nav-link" href="about.php">Logout</a>
+                                        <a class="nav-link" href="index.php">Logout</a>
                                 </li>
 								<li class="nav-item">
                                         <div class="dropdown">               
@@ -60,14 +60,11 @@
         <br>
         <div class="container">
                 <div class="row">
-                        <div class="col-sm-9">
-                                <input class="form-control" type="text" placeholder="Search journal, paper, conference">
-                        </div>
-                        <div class="col-sm-1">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                        </div>
+                        <div class="form-group col-sm-4 col-centered">
+                                                <label>Search Results for Journals</label>
+						</div>
                         <div class="col-sm-2">
-                                <div class="btn-group">
+                                <div class="btn-group" align="right" >
                                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 Sort By
                                         </button>
@@ -91,10 +88,10 @@
                                                                 <tr>
                                                                         <th scope='col'>#</th>
                                                                         <th scope='col'>ID</th>
-                                                                        <th scope='col'>Title</th>
-                                                                        <th scope='col'>Journal</th>
+                                                                        <th scope='col'>Volume</th>
                                                                         <th scope='col'>Date</th>
-                                                                        <th scope='col'>Authors</th>
+                                                                        <th scope='col'>Subscriber Count</th>
+                                                                        <th scope='col'>Page no</th>
                                                                 </tr>
                                                         </thead>
                                                         <tbody>

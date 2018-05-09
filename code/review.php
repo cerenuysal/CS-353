@@ -34,7 +34,7 @@
                                 <li class="nav-item">
                                         <a class="nav-link" href="assign.php">Assign</a>
                                 </li>
-                                  <li class="nav-item">
+                                  <li class="nav-item active">
                                         <a class="nav-link" href="review.php">Review</a>
                                 </li>
                                  <li class="nav-item">
@@ -44,7 +44,7 @@
                                         <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
                                 </li>
 								<li class="nav-item">
-                                        <a class="nav-link" href="about.php">Logout</a>
+                                        <a class="nav-link" href="index.php">Logout</a>
                                 </li>
 								<li class="nav-item">
                                         <div class="dropdown">               
@@ -63,24 +63,26 @@
         <br>
         <div class="container">
                 <div class="jumbotron">
-                        <h1 class="display-4">Assign Paper</h1>
-                        <p class="lead">Succesfully assign the paper to the reviewers to be chosen!</p>
+                        <h1 class="display-4">Review Paper</h1>
+                        <p class="lead">Post your review assigned by your editor!</p>
                         <hr class="my-4">
-                        <p> Assign paper page is designed for editors exclusively, allowing them to assign the chosen paper to be reviewed by specific authors.
+                        <p> Review paper page is designed for reviewers exclusively, allowing them to post the review of assigned paper.
                         </p>
                 </div>
                 <div class="container">
                         <form action="login_post.php" method="post">
                         		<div class="row">
                                         <div class="form-group col-sm-4 col-centered">
-                                                <label>Paper: Adventure of joe</label>
+                                                <label><b>Paper:</b> Adventure of joe</label> <br>
+                                                <label><b>Assigned by editor:</b> Chris</label>
                                         </div>
                                 </div>
                                 
                                 <div class="row">
                                         <div class="form-group col-sm-4 col-centered">
-                                                <label for="inputUsername">Search For Reviewers</label>
-                                                <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Reviewer Name">
+                                                <label for="inputUsername">Upload your Review</label>
+                                                <label for="exampleFormControlFile1">Upload your paper</label>
+												<input type="file" class="form-control-file" id="exampleFormControlFile1">
                                         </div>
                                 </div>
 
@@ -91,7 +93,7 @@
                                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                                                 <div class="text-center">
                                                         <br>
-                                                        <button type="submit" class="btn btn-success">Assign</button>
+                                                        <button type="submit" class="btn btn-success">Post review</button>
                                                 </div>
                                         </div>
                                 </div>

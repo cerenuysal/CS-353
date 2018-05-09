@@ -46,28 +46,34 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <u2 class="navbar-nav">
-                                <lx class="nav-item">
+                                <li class="nav-item">
                                         <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                                </lx>
-                                <lx class="nav-item">
+                                </li>
+                                <li class="nav-item">
                                         <a class="nav-link" href="publish.php">Publish</a>
-                                </lx>
-                                <lx class="nav-item">
+                                </li>
+								<li class="nav-item">
+                                        <a class="nav-link" href="library.php">Library</a>
+                                </li>                               
+                                <li class="nav-item">
                                         <a class="nav-link" href="about.php">About</a>
-                                </lx>
-                                <lx class="nav-item">
+                                </li>
+                                <li class="nav-item">
                                         <a class="nav-link" href="assign.php">Assign</a>
-                                </lx>
-                                  <lx class="nav-item">
+                                </li>
+                                  <li class="nav-item">
                                         <a class="nav-link" href="review.php">Review</a>
-                                </lx>
-                                 <lx class="nav-item">
+                                </li>
+                                 <li class="nav-item">
                                         <a class="nav-link" href="endorsement.php">Endorsement</a>
-                                </lx>
-                                <lx class="nav-item active">
-                                        <a class="nav-link" href="advancedSearch.php">Advanced Search</a>
-                                </lx>
-                                <lx class="nav-item">
+                                </li>
+                                <li class="nav-item active">
+                                        <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
+                                </li>
+								<li class="nav-item">
+                                        <a class="nav-link" href="about.php">Logout</a>
+                                </li>
+								<li class="nav-item">
                                         <div class="dropdown">               
                                           <div id="myDropdown" class="dropdown-content">
                                             <form>
@@ -76,7 +82,7 @@
                                             </form>
                                           </div>                    
                                         </div>
-                                </lx>
+                                </li>
                         </u2>
                 </div>
         </nav>
@@ -84,22 +90,22 @@
 <body>
 
 <ul>
-  <li><a class="active" href="#conferance">Conferance</a></li>
-  <li><a href="#journal">Journal</a></li>
-  <li><a href="#institution">Institution</a></li>
-  <li><a href="#user">User</a></li>
-  <li><a href="#publication">Publication</a></li>
-  <li><a href="#author">Author</a></li>
+  <li><a class="active" href="advancedSearchPageConf.php#conferance">Conferance</a></li>
+  <li><a href="advancedSearchJournal.php#journal">Journal</a></li>
+  <li><a href="advancedSearchPageInst.php#institution">Institution</a></li>
+  <li><a href="advancedSearchPageUser.php#user">User</a></li>
+  <li><a href="advancedSearchPagePublication.php#publication">Publication</a></li>
+  <li><a href="advancedSearchPageAuthor.php#author">Author</a></li>
 </ul>
 
 <div align="center"> <br><br><br>
  <label>Advanced Search for Conference<br><br></label>
-  <form class="example" action="/action_page.php" style="margin:auto;max-width:300px;height:50%" align="center">
+  <form class="example" action="/libraryConf.php" style="margin:auto;max-width:300px;height:50%" align="center">
     <input type="text" placeholder="Conference ID" name="search1"><br>
   	<br>
     <input type="text" placeholder="Conference Date" name="search2"><br>
     <br>
-    <button type = "submit"style="font-size:18px">Search </button>
+    <input type = "button" onclick="location.href='libraryConf.php';" style="font-size:18px" value="Search">
   </form>
 </div>
         
