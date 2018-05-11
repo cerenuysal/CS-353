@@ -97,7 +97,7 @@
         <form class="example" action="/libraryPublication.php" style="margin:auto;max-width:300px;height:50%" align="center">
         <input type="text" class="form-control" name="search1" placeholder="Publication ID" required>
         <br>
-        <a href="link"><button>Search</button></a> 
+        <a href="libraryPublication.php"><button>Seaarch</button></a>
         </form>
 </div>
         
