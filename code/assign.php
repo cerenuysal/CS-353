@@ -82,21 +82,18 @@
                                                 <br>
                                                 <label for="exampleInputPassword1">Confirm your password</label>
                                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>                              
-                                                        <br>
-                                                        <button type="submit" onclick="myFunction()" class="btn btn-success">Assign</button>
-                                                        <script>
-                                                        function myFunction() {
-                                                                var r = confirm("Press a button!");
-                                                                var url = window.location.href;
-                                                                if (r) {
-                                                                        txt = "You pressed OK!";
-                                                                } else {
-                                                                        return false;
-                                                                }
-                                                                document.getElementBy
-                                                        }
-                                                        </script>
-</form>
+													<br>
+                                                        <button type="submit" onclick="return myFunction();" class="btn btn-success">Assign</button>
+														<script>
+														function myFunction() {
+															var url = window.location.href;
+															if (confirm("Are you sure ?")) {
+																	txt = "You pressed OK!";
+															} else {
+																	return false;
+															}
+														}
+														</script> 
                                         </div>
                                 </div>
                         </form>

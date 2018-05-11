@@ -95,9 +95,9 @@
 <div align="center"> <br><br><br>
  <label>Advanced Search for Author<br><br></label>
   <form class="example" action="/libraryAuthor.php" style="margin:auto;max-width:300px;height:50%" align="center">
-    <input type="text" placeholder="Author ID" name="search1" required><br>
+    <input type="search" placeholder="Author ID" name="search1" required><br>
     <br>
-    <a href="libraryAuthor.php"><button>Search</button></a> 
+    <button type="submit" class="btn btn-success">Search</button>
   </form>
 </div>
         

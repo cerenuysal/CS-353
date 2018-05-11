@@ -134,33 +134,45 @@
 
 </div>
 
-<div class="row">
+		<div class="row">
 
-<div class="form-group col-sm-4 col-centered">
+		<div class="form-group col-sm-4 col-centered">
 
-<label for="exampleFormControlFile1">Upload your paper</label>
+		<label for="exampleFormControlFile1">Upload your paper</label>
 
-<input type="file" class="form-control-file" id="exampleFormControlFile1" required>
+		<input type="file" class="form-control-file" id="exampleFormControlFile1" required>
 
-</div>
+		</div>
 
-</div>
+		</div>
 
-<div class="row">
+		<div class="row">
 
-<div class="form-group col-sm-4 col-centered">
+		<div class="form-group col-sm-4 col-centered">
 
-<br>
+		<br>
 
-<label for="exampleInputPassword1">Confirm your password</label>
+		<label for="exampleInputPassword1">Confirm your password</label>
 
-<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+		<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>                              
+                                                        <br>
+                                                        
 
-<div class="text-center">
+		<div class="text-center">
 
-<br>
+		<br>
 
-<button type="submit" class="btn btn-success">Submit</button>
+		<button type="submit" onclick="return myFunction();" class="btn btn-success">Assign</button>
+														<script>
+														function myFunction() {
+															var url = window.location.href;
+															if (confirm("Are you sure ?")) {
+																	txt = "You pressed OK!";
+															} else {
+																	return false;
+															}
+														}
+														</script> 
 
 </div>
 
@@ -172,7 +184,7 @@
 
 </div>
 
-</div>s
+</div>
 
 
 

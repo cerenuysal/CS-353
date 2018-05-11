@@ -99,7 +99,7 @@
 <br>
     <input type="text" placeholder="Conference Date" name="search2" required><br>
     <br>
-    <a href="libraryConf.php"><button>Search</button></a>
+    <a href="libraryConf.php" target="_parent"><button onclick="myFunction()" class="dropbtn">Search</button>
   </form>
 </div>
         
