@@ -101,7 +101,7 @@
     <br>
     <input type="text" placeholder="Institution Name" name="search3" required><br>
     <br>
-    <a href="libraryInst.php" target="_parent"><button onclick="myFunction()" class="dropbtn">Search</button>
+    <a href="link"><button>Search</button></a> 
   </form>
 </div>
         
