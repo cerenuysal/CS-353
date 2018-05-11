@@ -101,7 +101,7 @@
     <br>
     <input type="text" placeholder="Institution Name" name="search3" required><br>
     <br>
-    <a href="link"><button>Search</button></a> 
+    <a href="libraryInst.php"><button>Search</button></a>  
   </form>
 </div>
         
