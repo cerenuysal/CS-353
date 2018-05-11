@@ -93,13 +93,14 @@
 </ul>
 
 <div align="center"> <br><br><br>
- <label>Advanced Search for journal<br><br></label>
+ <label>Advanced Search for Journal<br><br></label>
   <form class="example" action="/libraryJournal.php" style="margin:auto;max-width:300px;height:50%" align="center">
     <input type="text" placeholder="Journal ID" name="search1" required><br>
   	<br>
     <input type="text" placeholder="Journal Date" name="search2" required><br>
     <br>
-    <button type="submit" class="btn btn-success">Search</button>
+    <a href="libraryJournal.php"><button type="submit" class="btn btn-success">Search</button>  </a>
+    
   </form>
 </div>
         
