@@ -101,7 +101,7 @@
     <br>
     <input type="text" placeholder="User Name" name="search3" required><br>
     <br>
-    <a href="libraryUser.php" target="_parent"><button onclick="myFunction()" class="dropbtn">Search</button>
+    <a href="libraryUser.php"><button>Search</button></a>
   </form>
 </div>
         
