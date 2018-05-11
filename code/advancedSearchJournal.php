@@ -99,7 +99,7 @@
   	<br>
     <input type="text" placeholder="Journal Date" name="search2" required><br>
     <br>
-    <a href="link"><button>Search</button></a> 
+    <a href="libraryJournal.php"><button>Search</button></a> 
   </form>
 </div>
         
