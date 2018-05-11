@@ -97,7 +97,7 @@
   <form class="example" action="/libraryAuthor.php" style="margin:auto;max-width:300px;height:50%" align="center">
     <input type="text" placeholder="Author ID" name="search1" required><br>
     <br>
-    <a href="link"><button>Search</button></a> 
+    <a href="libraryAuthor.php"><button>Search</button></a> 
   </form>
 </div>
         
