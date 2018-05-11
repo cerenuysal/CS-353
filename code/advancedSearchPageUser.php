@@ -22,11 +22,9 @@
               bottom: 0;
               width: 100%;
           }
-
           li {
               float: left;
           }
-
           li a {
               display: block;
               color: white;
@@ -34,21 +32,17 @@
               padding: 14px 16px;
               text-decoration: none;
           }
-
         </style>
         
 </head>
 <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="index.php">CynicalApe Library</a>
+                <a class="navbar-brand" href="about.php">CynicalApe Library</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <u2 class="navbar-nav">
-                                <li class="nav-item">
-                                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                                </li>
                                 <li class="nav-item">
                                         <a class="nav-link" href="publish.php">Publish</a>
                                 </li>
@@ -77,7 +71,7 @@
                                         <div class="dropdown">               
                                           <div id="myDropdown" class="dropdown-content">
                                             <form>
-                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()"><br>
+                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()" required><br>
                                             <button onclick="myFunction()" class="dropbtn">List Publication Citations</button>
                                             </form>
                                           </div>                    
@@ -101,13 +95,13 @@
 <div align="center"> <br><br><br>
  <label>Advanced Search for User<br><br></label>
   <form class="example" action="/libraryUser.php" style="margin:auto;max-width:300px;height:50%" align="center">
-    <input type="text" placeholder="User ID" name="search1"><br>
+    <input type="text" placeholder="User ID" name="search1" required><br>
   	<br>
-    <input type="text" placeholder="User Mail" name="search2"><br>
+    <input type="text" placeholder="User Mail" name="search2" required><br>
     <br>
-    <input type="text" placeholder="User Name" name="search3"><br>
+    <input type="text" placeholder="User Name" name="search3" required><br>
     <br>
-    <input type = "button" onclick="location.href='libraryUser.php';" style="font-size:18px" value="Search">
+    <a href="libraryUser.php" target="_parent"><button onclick="myFunction()" class="dropbtn">Search</button>
   </form>
 </div>
         

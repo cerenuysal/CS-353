@@ -13,15 +13,12 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="index.php">CynicalApe Library</a>
+                <a class="navbar-brand" href="about.php">CynicalApe Library</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <u2 class="navbar-nav">
-                                <li class="nav-item">
-                                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                                </li>
                                 <li class="nav-item">
                                         <a class="nav-link" href="publish.php">Publish</a>
                                 </li>
@@ -50,7 +47,7 @@
                                         <div class="dropdown">               
                                           <div id="myDropdown" class="dropdown-content">
                                             <form>
-                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()"><br>
+                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()" required><br>
                                             <button onclick="myFunction()" class="dropbtn">List Publication Citations</button>
                                             </form>
                                           </div>                    
@@ -91,73 +88,57 @@ SUBSCRIBER PAGE
     /* Move it off the top of the page, then centre it horizontally */
     margin: 50px auto;
     width: 635px;
-
 /* For visibility. Delete me */
 border: 1px solid red;
 }
-
 #LeftCol
 {
     /* Move it to the left */
     float: left;
-
     width: 200px;
     text-align: center;
-
     /* Move it away from the content */
     margin-right: 20px;
-
 /* For visibility. Delete me */
 border: 1px solid brown;
 }
-
 #Photo
 {
     /* Width and height of photo container */
     width: 200px;
     height: 200px;
-
 /* For visibility. Delete me */
 border: 1px solid green;
 }
-
 #PhotoOptions
 {
     text-align: center;
     width: 200px;
-
 /* For visibility. Delete me */
 border: 1px solid brown;
 }
-
 #Info
 {
     width: 400px;
     text-align: center;
-
     /* Move it to the right */
     float: right;
-
 /* For visibility. Delete me */
 border: 1px solid blue;
 }
-
 #Info strong
 {
     /* Give it a width */
     display: inline-block;
     width: 100px;
-
 /* For visibility. Delete me */
 border: 1px solid orange;
 }
-
 #Info span
 {
     /* Give it a width */
     display: inline-block;
     width: 250px;
-
 /* For visibility. Delete me */
 border: 1px solid purple;
 }

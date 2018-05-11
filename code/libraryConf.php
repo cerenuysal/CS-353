@@ -20,9 +20,6 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <u2 class="navbar-nav">
                                 <li class="nav-item">
-                                        <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
                                         <a class="nav-link" href="publish.php">Publish</a>
                                 </li>
 								<li class="nav-item">
@@ -50,7 +47,7 @@
                                         <div class="dropdown">               
                                           <div id="myDropdown" class="dropdown-content">
                                             <form>
-                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()"><br>
+                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()" required><br>
                                             <button onclick="myFunction()" class="dropbtn">List Publication Citations</button>
                                             </form>
                                           </div>                    

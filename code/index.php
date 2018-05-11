@@ -39,19 +39,19 @@
 
 <li class="nav-item active">
 
-<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+<a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
 
 </li>
 
 <li class="nav-item">
 
-<a class="nav-link" href="library.php">Library</a>
+<a class="nav-link" href="libraryNonLogin.php">Library</a>
 
 </li>
 
 <li class="nav-item">
 
-<a class="nav-link" href="about.php">About</a>
+<a class="nav-link" href="aboutNonLogin.php">About</a>
 
 </li>
 
@@ -73,7 +73,7 @@
 
 <label for="inputUsername">Username</label>
 
-<input type="text" class="form-control" name="username" id="inputUsername" placeholder="Enter Username">
+<input type="text" class="form-control" name="username" id="inputUsername" placeholder="Enter Username" required>
 
 </div>
 
@@ -85,7 +85,7 @@
 
 <label for="inputPassword">Password</label>
 
-<input type="password" class="form-control" name="customerID" id="inputPassword" placeholder="Enter Password">
+<input type="password" class="form-control" name="customerID" id="inputPassword" placeholder="Enter Password" required>
 
 <div class="text-center">
 

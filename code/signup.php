@@ -1,15 +1,10 @@
 <!-- 
-
 # SIGN UP PAGE
-
 # OGUZ KAAN AGAC: 04/05/2018
-
 # VER 1.0
-
 ?> --> 
 
 <?php
-
 ?>
 
 
@@ -38,7 +33,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-<a class="navbar-brand" href="index.php">CynicalApe Library</a>
+<a class="navbar-brand" href="about.php">CynicalApe Library</a>
 
 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 
@@ -52,13 +47,13 @@
 
 <li class="nav-item active">
 
-<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+<a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
 
 </li>
 
 <li class="nav-item">
 
-<a class="nav-link" href="about.php">About</a>
+<a class="nav-link" href="aboutNonLogin.php">About</a>
 
 </li>
 
@@ -80,7 +75,7 @@
 
 <label for="exampleInputEmail1">Email address</label>
 
-<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="joe@myemail.com">
+<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="joe@myemail.com" required>
 
 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 
@@ -94,7 +89,7 @@
 
 <label for="inputUsername">Username</label>
 
-<input type="text" class="form-control" name="username" id="inputUsername" placeholder="joe123x">
+<input type="text" class="form-control" name="username" id="inputUsername" placeholder="joe123x" required>
 
 </div>
 
@@ -106,7 +101,7 @@
 
 <label for="exampleInputPassword1">Password</label>
 
-<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
 
 </div>
 
