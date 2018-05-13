@@ -1,4 +1,6 @@
 <?php
+session_start();
+include 'connection.php';
 ?>
 <html lang="en">
 
@@ -85,7 +87,7 @@
 
 <label for="inputPassword">Password</label>
 
-<input type="password" class="form-control" name="customerID" id="inputPassword" placeholder="Enter Password" required>
+<input type="password" class="form-control" name="password" id="inputPassword" placeholder="Enter Password" required>
 
 <div class="text-center">
 
