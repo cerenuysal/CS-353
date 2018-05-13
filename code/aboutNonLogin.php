@@ -33,9 +33,6 @@
                                 <li class="nav-item">
                                         <a class="nav-link" href="index.php">Login <span class="sr-only">(current)</span></a>
                                 </li>
-								<li class="nav-item">
-                                        <a class="nav-link" href="libraryNonLogin.php">Library</a>
-                                </li>                               
                                 <li class="nav-item active">
                                         <a class="nav-link" href="aboutNonLogin.php">About</a>
                                 </li>

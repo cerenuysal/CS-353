@@ -1,10 +1,7 @@
-<?php
-session_start();
-include 'connection.php';
-?>
 <html lang="en">
 
 <head>
+    <script src="jquery.min.js"></script>
 
 <!-- Required meta tags -->
 
@@ -18,9 +15,60 @@ include 'connection.php';
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <link rel="stylesheet" type="text/css" href="random.css">
-
 <title>CynicalApe Lib</title>
 
+    <script>
+        $(document).ready(function(){
+            // Variable to hold request
+            var request;
+
+// Bind to the submit event of our form
+            $("#login_form").submit(function(event){
+
+                // Prevent default posting of form - put here to work in case of errors
+                event.preventDefault();
+
+                // Abort any pending request
+                if (request) {
+                    request.abort();
+                }
+                // setup some local variables
+                var $form = $(this);
+
+                // Let's select and cache all the fields
+                var $inputs = $form.find("input, select, button, textarea");
+
+                // Serialize the data in the form
+                var serializedData = $form.serialize();
+
+                // Let's disable the inputs for the duration of the Ajax request.
+                // Note: we disable elements AFTER the form data has been serialized.
+                // Disabled form elements will not be serialized.
+                $inputs.prop("disabled", true);
+                // Fire off the request to /form.php
+                request = $.ajax({
+                    type: 'POST',
+                    url: "login_post.php",
+                    data: serializedData,
+                    success: function (response) {
+                        // you will get response from your php page (what you echo or print)
+                       if (response == 1)
+                       {
+                           window.location.href = "library.php";
+                       }
+                       else
+                       {
+                           alert("WRONG USERNAME OR PASSWORD");
+                           location.reload();
+                       }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -47,12 +95,6 @@ include 'connection.php';
 
 <li class="nav-item">
 
-<a class="nav-link" href="libraryNonLogin.php">Library</a>
-
-</li>
-
-<li class="nav-item">
-
 <a class="nav-link" href="aboutNonLogin.php">About</a>
 
 </li>
@@ -67,7 +109,7 @@ include 'connection.php';
 
 <div class="container">
 
-<form action="login_post.php" method="post">
+<form id="login_form">
 
 <div class="row">
 
@@ -113,7 +155,7 @@ include 'connection.php';
 
 <div class="text-center">
 
-<a class="btn btn-success" href="signup.php" role="button">Sign Up</a>
+<a class="btn btn-success" href="signup_page.php" role="button">Sign Up</a>
 
 <small id="signupHelp" class="form-text text-muted text-center">Don't have an account? Sign up here.</small>
 
@@ -132,7 +174,6 @@ include 'connection.php';
 
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 

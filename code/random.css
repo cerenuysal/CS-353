@@ -35,3 +35,10 @@
     float: none;
     margin: 0 auto;
 }
+
+.my-table {
+    font-size: small;
+    margin-top: 1%;
+    margin-right: 5%;
+    margin-left: 5%;
+}

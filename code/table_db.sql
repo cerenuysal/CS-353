@@ -41,51 +41,45 @@ CREATE TABLE authors (
 	authorID INT UNSIGNED NOT NULL,
 	FOREIGN KEY(authorID)
 	  REFERENCES users(ID)
-	  ON DELETE CASCADE
-
+	  ON DELETE CASCADE,
+  PRIMARY KEY(authorID)
 );
 
 CREATE TABLE editors (
 	editorID INT UNSIGNED NOT NULL,
 	FOREIGN KEY(editorID)
 	  REFERENCES users(ID)
-	  ON DELETE CASCADE
+	  ON DELETE CASCADE,
+  PRIMARY KEY (editorID)
 );
 
 CREATE TABLE reviewers (
 	reviewerID INT UNSIGNED NOT NULL,
 	FOREIGN KEY(reviewerID)
 	  REFERENCES users(ID)
-	  ON DELETE CASCADE
+	  ON DELETE CASCADE,
+  PRIMARY KEY (reviewerID)
 );
 
 CREATE TABLE subscribers (
 	subscriberID INT UNSIGNED NOT NULL,
 	FOREIGN KEY(subscriberID)
 	  REFERENCES users(ID)
-	  ON DELETE CASCADE
+	  ON DELETE CASCADE,
+  PRIMARY KEY (subscriberID)
 );
 
 CREATE TABLE organizations (
 	ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	title VARCHAR(64) NOT NULL,
+	title VARCHAR(120) NOT NULL,
 	creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE publications (
-	ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	title VARCHAR(100) NOT NULL,
-	publicationDate DATETIME NOT NULL,
-	citationCount INT DEFAULT 0,
-	weblink VARCHAR(100)
 );
 
 CREATE TABLE journals (
 	journalID INT UNSIGNED NOT NULL,
 	volume INT,
-	journalDate DATETIME NOT NULL UNIQUE,
+	journalDate DATE NOT NULL,
 	subscriber_count INT DEFAULT 0,
-	page_no INT NOT NULL,
 	PRIMARY KEY (journalID, journalDate),
 	FOREIGN KEY(journalID)
 		REFERENCES organizations(ID)
@@ -94,16 +88,47 @@ CREATE TABLE journals (
 
 CREATE TABLE conferences(
 	conferenceID INT UNSIGNED NOT NULL,
-	conferenceDate DATETIME NOT NULL UNIQUE,
+	conferenceDate DATE NOT NULL UNIQUE,
 	subscriber_count INT DEFAULT 0,
 	country VARCHAR(50) NOT NULL,
-	street_no INT,
-	street_name VARCHAR(50),
 	city_name VARCHAR(50) NOT NULL,
+	weblink VARCHAR(100),
 	PRIMARY KEY (conferenceID, conferenceDate),
 	FOREIGN KEY (conferenceID)
 		REFERENCES organizations(ID)
 		ON DELETE CASCADE
+);
+
+CREATE TABLE belongs (
+	authorID INT UNSIGNED NOT NULL,
+	instID INT UNSIGNED NOT NULL,
+	FOREIGN KEY (authorID)
+	REFERENCES authors(authorID)
+		ON DELETE CASCADE,
+	FOREIGN KEY (instID)
+	REFERENCES institutions(ID)
+		ON DELETE CASCADE,
+	PRIMARY KEY (authorID)
+);
+
+CREATE TABLE publications (
+	ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	title VARCHAR(100) NOT NULL,
+	publicationDate DATETIME NOT NULL,
+	citationCount INT DEFAULT 0,
+	weblink VARCHAR(200)
+);
+
+CREATE TABLE publicationAuthors (
+	pubID INT UNSIGNED NOT NULL,
+	authorID INT UNSIGNED NOT NULL,
+	FOREIGN KEY (pubID)
+		REFERENCES publications(ID)
+		ON DELETE CASCADE,
+	FOREIGN KEY (authorID)
+		REFERENCES authors(authorID)
+		ON DELETE CASCADE,
+	PRIMARY KEY (pubID, authorID)
 );
 
 CREATE TABLE institutions (
@@ -248,3 +273,62 @@ CREATE TABLE endorsement(
 		ON DELETE CASCADE,
 	PRIMARY KEY (endorserID, endorseeID, expertise)
 );
+
+DROP TRIGGER IF EXISTS userInsert_trigger;
+
+delimiter |
+CREATE TRIGGER userInsert_trigger AFTER INSERT ON users
+	FOR EACH ROW
+	BEGIN
+		IF NEW.privilege_level = 0 THEN
+			INSERT INTO subscribers(subscriberID) VALUES (NEW.ID);
+		ELSEIF NEW.privilege_level = 1 THEN
+			INSERT INTO authors (authorID) VALUES (NEW.ID);
+		ELSEIF NEW.privilege_level = 2 THEN
+			INSERT INTO reviewers (reviewerID) VALUES (NEW.ID);
+		ELSEIF NEW.privilege_level = 3 THEN
+			INSERT INTO editors (editorID) VALUES (NEW.ID);
+		END IF;
+	END;
+|
+delimiter ;
+
+
+
+INSERT INTO users (mail, username, password, privilege_level)
+	VALUES
+	('okaanagac@gmail.com', 'CynicalApe', '1234', 3),
+	('atpug@gmail.com', 'aptup', '1235', 0),
+	('anotherone@gmail.com', 'khaleed', '1234', 0),
+	('scrap@yahoo.com', 'alloy"', '111', 1),
+	('cgdon057@gmail.com', ' Chaitanya Gujjar', '213', 1),
+	('bondjames@gmail.com','jb', '007', 2);
+
+INSERT INTO organizations (title)
+VALUES
+	('Journal of Computer Science & Systems Biology'),
+	('Journal of Global Research in Computer Science'),
+	('Journal of Information Technology & Software Engineering'),
+	('American Journal of Computer Science and Information Technology'),
+	('5th International Conference on Big Data Analysis and Data Mining'),
+	('Global Expo on Computer Graphics & Animation'),
+	('International conference on Data Analysis and Cloud Computing'),
+	('ACM SIGGRAPH');
+
+INSERT INTO journals(journalID, volume, journalDate, subscriber_count)
+VALUES
+	('1', 10, '2017-8-21', 0),
+	('2', 5, '2014-2-12', 0),
+	('3', 9, '2015-1-14', 0),
+	('4', 3, '2017-11-4', 0);
+
+INSERT INTO conferences(conferenceID, conferenceDate, subscriber_count, country, city_name, weblink)
+VALUES
+	('5', '2018-9-21', 0, 'ITALY', 'ROME','https://datamining.conferenceseries.com/'),
+	('6', '2018-9-30', 0, 'JAPAN','TOKYO','https://computergraphics-gamedesign.conferenceseries.com'),
+	('7', '2018-10-6', 0, 'UK','LONDON','https://cloud-computing.conferenceseries.com/'),
+	('8', '2018-9-12', 0, 'CANADA','VANCOUVER', 'https://s2018.siggraph.org/');
+
+INSERT INTO publications(title, publicationDate, citationCount, weblink)
+VALUES
+	('')

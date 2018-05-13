@@ -9,15 +9,10 @@ $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$passwo
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    $_SESSION['conf'] =1;
-    $row = $result->fetch_assoc();
-    $_SESSION['cid'] = $row['cid'];
-    $_SESSION['logged_in'] = true;
-    echo 'AAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+    echo "1";
+} else {
+    echo "-1";
 }
-else {
-    $_SESSION['conf'] = -2;
-    $_SESSION['logged_in'] = false;
-}
-$conn->close(); ?>
+$conn->close();
+?>
 

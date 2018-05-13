@@ -1,5 +1,3 @@
-<?php
-?>
 <!DOCTYPE html>
 <html>
 <head>  <!-- Required meta tags -->
@@ -41,29 +39,29 @@
                                         <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
                                 </li>
 								<li class="nav-item">
-                                        <a class="nav-link" href="about.php">Logout</a>
+                                        <a class="nav-link" href="logout.php">Logout</a>
                                 </li>
-								<li class="nav-item">
-                                        <div class="dropdown">               
-                                          <div id="myDropdown" class="dropdown-content">
-                                            <form>
-                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()" required><br>
-                                            <button onclick="myFunction()" class="dropbtn">List Publication Citations</button>
-                                            </form>
-                                          </div>                    
-                                        </div>
-                                </li>
+
                         </u2>
                 </div>
         </nav>
         <br>
         <div class="container">
-                <div class="row">
+            <form action="library.php" method="post">
+            <div class="row">
                         <div class="col-sm-9">
-                                <input class="form-control" type="text" placeholder="Search journal, paper, conference">
+                                <input class="form-control" id="searchbar" type="text" placeholder="Search journal, paper, conference">
                         </div>
                         <div class="col-sm-1">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="reset" class="btn btn-primary" onclick="searchfunk()">Search</button>
+                            <script>
+                                function searchfunk() {
+                                    var element = document.getElementById('searchbar').value;
+                                    var page = "library.php?search=";
+                                    element = page.concat(element);
+                                    window.location.href = element;
+                                }
+                            </script>
                         </div>
                         <div class="col-sm-2">
                                 <div class="btn-group">
@@ -71,65 +69,52 @@
                                                 Sort By
                                         </button>
                                         <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Relevance</a>
-                                                <a class="dropdown-item" href="#">Date Ascending</a>
-                                                <a class="dropdown-item" href="#">Date Descending</a>
-                                                <a class="dropdown-item" href="#">Authors</a>
+                                                <a class="dropdown-item" href="library.php?sort=rel">Relevance</a>
+                                                <a class="dropdown-item" href="library.php?sort=date_asc">Date Ascending</a>
+                                                <a class="dropdown-item" href="library.php?sort=date_desc">Date Descending</a>
+                                            <a class="dropdown-item" href="library.php?sort=subs">Subscriber Count</a>
+
                                         </div>
                                 </div>
                         </div>
                 </div>
+            </form>
+
         </div>
                 <br>
-                <div class="container">
+        <div class="my-table">
                         <div class="row">
-                                <div class="col-sm-12">
+                                <div class="col-xl-6 col-lg-12">
                                         <div class="table-responsive">
-                                                <table class = 'table table-bordered table-hover'>
-                                                        <thead class = 'thead-dark'>
-                                                                <tr>
-                                                                        <th scope='col'>#</th>
-                                                                        <th scope='col'>ID</th>
-                                                                        <th scope='col'>Title</th>
-                                                                        <th scope='col'>Journal</th>
-                                                                        <th scope='col'>Date</th>
-                                                                        <th scope='col'>Authors</th>
-                                                                </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                                <tr class='table'>
-                                                                        <th scope='row'>1</th>
-                                                                        <td> 007 </td>
-                                                                        <td> adventures of joe</td>
-                                                                        <td> journal of joes</td>
-                                                                        <td> 04/05/2018</td>
-                                                                        <td> joe </td>
-                                                                </tr>
-                                                                <tr class='table'>
-                                                                        <th scope='row'>1</th>
-                                                                        <td> 007 </td>
-                                                                        <td> adventures of joe</td>
-                                                                        <td> journal of joes</td>
-                                                                        <td> 04/05/2018</td>
-                                                                        <td> joe </td>
-                                                                </tr>
-                                                                <tr class='table'>
-                                                                        <th scope='row'>1</th>
-                                                                        <td> 007 </td>
-                                                                        <td> adventures of joe</td>
-                                                                        <td> journal of joes</td>
-                                                                        <td> 04/05/2018</td>
-                                                                        <td> joe </td>
-                                                                </tr>
-
-                                                        </tbody>
-                                                </table>
+                                            <?php
+                                            $sort = "empty";
+                                            if(isset($_GET['sort'])) {
+                                                $sort = $_GET['sort'];
+                                            }
+                                            $search = "empty";
+                                            if(isset($_GET['search'])) {
+                                                $search = $_GET['search'];
+                                            }
+                                            include 'journalsearchresult.php';?>
                                         </div>
                                 </div>
+                            <div class="col-xl-6 col-lg-12">
+                                <div class="table-responsive">
+                                    <?php
+                                    $sort = "empty";
+                                    if(isset($_GET['sort'])) {
+                                        $sort = $_GET['sort'];
+                                    }
+                                    $search = "empty";
+                                    if(isset($_GET['search'])) {
+                                        $search = $_GET['search'];
+                                    }
+                                    include 'conferencesearchresult.php';?>
+                                </div>
+                            </div>
                         </div>
-                </div>
 
-
+        </div>
                 <!-- Optional JavaScript -->
                 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
                 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
