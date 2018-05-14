@@ -7,6 +7,8 @@
 # LEVEL 0: Subscriber
 
 DROP TABLE IF EXISTS endorsement;
+DROP VIEW IF EXISTS paperview;
+DROP TABLE IF EXISTS belongs;
 DROP TABLE IF EXISTS skills;
 DROP TABLE IF EXISTS manages;
 DROP TABLE IF EXISTS publicationArea;
@@ -17,21 +19,24 @@ DROP TABLE IF EXISTS subscribes;
 DROP TABLE IF EXISTS cited;
 DROP TABLE IF EXISTS submitted;
 DROP TABLE IF EXISTS educations;
-DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS reviewers;
 DROP TABLE IF EXISTS editors;
 DROP TABLE IF EXISTS subscribers;
+DROP TABLE IF EXISTS publicationAuthors;
 DROP TABLE IF EXISTS publications;
 DROP TABLE IF EXISTS journals;
 DROP TABLE IF EXISTS conferences;
 DROP TABLE IF EXISTS organizations;
 DROP TABLE IF EXISTS institutions;
+DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 	ID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	mail VARCHAR(64) NOT NULL UNIQUE,
  	username VARCHAR(20) NOT NULL UNIQUE,
+	name VARCHAR(20) NOT NULL,
+	lastname VARCHAR(20) NOT NULL,
 	password VARCHAR(20) NOT NULL,
 	privilege_level INT DEFAULT 0,
 	creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -99,22 +104,11 @@ CREATE TABLE conferences(
 		ON DELETE CASCADE
 );
 
-CREATE TABLE belongs (
-	authorID INT UNSIGNED NOT NULL,
-	instID INT UNSIGNED NOT NULL,
-	FOREIGN KEY (authorID)
-	REFERENCES authors(authorID)
-		ON DELETE CASCADE,
-	FOREIGN KEY (instID)
-	REFERENCES institutions(ID)
-		ON DELETE CASCADE,
-	PRIMARY KEY (authorID)
-);
 
 CREATE TABLE publications (
 	ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	title VARCHAR(100) NOT NULL,
-	publicationDate DATETIME NOT NULL,
+	publicationDate DATE NOT NULL,
 	citationCount INT DEFAULT 0,
 	weblink VARCHAR(200)
 );
@@ -138,6 +132,17 @@ CREATE TABLE institutions (
 	street_no INT,
 	street_name VARCHAR(50),
 	city_name VARCHAR(50) NOT NULL
+);
+CREATE TABLE belongs (
+	authorID INT UNSIGNED NOT NULL,
+	instID INT UNSIGNED NOT NULL,
+	FOREIGN KEY (authorID)
+	REFERENCES authors(authorID)
+		ON DELETE CASCADE,
+	FOREIGN KEY (instID)
+	REFERENCES institutions(ID)
+		ON DELETE CASCADE,
+	PRIMARY KEY (authorID, instID)
 );
 
 CREATE TABLE publicationArea(
@@ -251,6 +256,14 @@ CREATE TABLE submitted (
 	PRIMARY KEY (organizationID, publicationID)
 );
 
+CREATE VIEW paperview AS
+SELECT authorID, name, lastname,publications.ID, publications.publicationDate, organizationID, publications.title as PublicationTitle, o.title as OrganizationTitle, users.mail,
+publications.weblink
+FROM publications
+	LEFT JOIN submitted s on publicationS.ID = S.publicationID
+	LEFT JOIN organizations o on s.organizationID = o.ID
+  LEFT JOIN publicationAuthors Author on publications.ID = Author.pubID
+	LEFT JOIN  users on  users.ID  = Author.authorID;
 CREATE TABLE skills (
 	expertise VARCHAR(100) NOT NULL,
 	degree VARCHAR(20),
@@ -295,14 +308,19 @@ delimiter ;
 
 
 
-INSERT INTO users (mail, username, password, privilege_level)
-	VALUES
-	('okaanagac@gmail.com', 'CynicalApe', '1234', 3),
-	('atpug@gmail.com', 'aptup', '1235', 0),
-	('anotherone@gmail.com', 'khaleed', '1234', 0),
-	('scrap@yahoo.com', 'alloy"', '111', 1),
-	('cgdon057@gmail.com', ' Chaitanya Gujjar', '213', 1),
-	('bondjames@gmail.com','jb', '007', 2);
+INSERT INTO users (mail, username, name, lastname,password, privilege_level)
+VALUES ('okaanagac@gmail.com', 'CynicalApe', 'oguz', 'agac','1234', 3),
+	('atpug@gmail.com', 'aptup','alptug','albayra', '1235', 0),
+	('anotherone@gmail.com', 'khaleed','dj', 'khaleed', '1234', 0),
+	('scrap@yahoo.com', 'alloy"', 'elizabeth', 'sobeck', '111', 1),
+	('bondjames@gmail.com','jb','james', 'bond', '007', 2),
+	('randomauthor1@gmail.com','ra1','randomname1', 'randomlastname1', '000', 1),
+	('randomauthor2@gmail.com','ra2','randomname2', 'randomlastname2', '000', 1),
+	('randomauthor3@gmail.com','ra3','randomname3', 'randomlastname3', '000', 1),
+	('randomauthor4@gmail.com','ra4', 'randomname4', 'randomlastname4','000', 1),
+	('randomauthor5@gmail.com','ra5', 'randomname5', 'randomlastname5','000', 1),
+	('randomauthor6@gmail.com','ra6','randomname6', 'randomlastname6', '000', 1);
+
 
 INSERT INTO organizations (title)
 VALUES
@@ -329,6 +347,31 @@ VALUES
 	('7', '2018-10-6', 0, 'UK','LONDON','https://cloud-computing.conferenceseries.com/'),
 	('8', '2018-9-12', 0, 'CANADA','VANCOUVER', 'https://s2018.siggraph.org/');
 
-INSERT INTO publications(title, publicationDate, citationCount, weblink)
+INSERT INTO publications(ID, title, publicationDate, citationCount, weblink)
 VALUES
-	('')
+	(555, 'testpublication1', '2000-12-3', '12', 'testurl1.com'),
+	(666, 'testpublication2', '2002-11-4', '10', 'testurl2.com'),
+	(777, 'testpublication3', '2005-4-2', '9', 'testurl3.com'),
+	(888, 'testpublication4', '2000-9-2', '15', 'testurl4.com');
+
+INSERT INTO publicationAuthors(pubID, authorID)
+VALUES
+	(555,6),
+	(555,7),
+	(666,7),
+	(777,8 ),
+	(777,9 ),
+	(777,10 ),
+	(888,11 );
+
+INSERT INTO submitted (organizationID, publicationID)
+VALUES
+	(5, 555),
+	(5, 666),
+	(5, 777),
+	(5, 888);
+
+INSERT INTO publicationArea(publicationID, scientificArea)
+		VALUES
+			(555, 'Computer Science'),
+			(555, 'Bioinformatic');

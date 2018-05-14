@@ -67,43 +67,105 @@
 								<li class="nav-item">
                                         <a class="nav-link" href="about.php">Logout</a>
                                 </li>
-								<li class="nav-item">
-                                        <div class="dropdown">               
-                                          <div id="myDropdown" class="dropdown-content">
-                                            <form>
-                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()" required><br>
-                                            <button onclick="myFunction()" class="dropbtn">List Publication Citations</button>
-                                            </form>
-                                          </div>                    
-                                        </div>
-                                </li>
                         </u2>
                 </div>
         </nav>
 
 <body>
-
-<ul>
-  <li><a class="active" href="advancedSearchPageConf.php#conferance">Conferance</a></li>
-  <li><a href="advancedSearchJournal.php#journal">Journal</a></li>
-  <li><a href="advancedSearchPageInst.php#institution">Institution</a></li>
-  <li><a href="advancedSearchPageUser.php#user">User</a></li>
-  <li><a href="advancedSearchPagePublication.php#publication">Publication</a></li>
-  <li><a href="advancedSearchPageAuthor.php#author">Author</a></li>
-</ul>
-
-<div align="center"> <br><br><br>
- <label>Advanced Search for Conference<br><br></label>
-  <form class="example" action="/libraryConf.php" style="margin:auto;max-width:300px;height:50%" align="center">
-    <input type="text" placeholder="Conference ID" name="search1" required><br>
 <br>
-    <input type="text" placeholder="Conference Date" name="search2" required><br>
-    <br>
-    <a href="libraryConf.php"><button type="submit" class="btn btn-success">Search</button>  </a>
-  </form>
+<div class="container">
+    <form action="library.php" method="post">
+        <div class="row">
+            <div class="col-sm-6">
+                <input class="form-control" id="searchbar" type="text" placeholder="Organization title">
+            </div>
+            <div class="col-sm-6">
+                <input class="form-control" id="searchbar" type="text" placeholder="Date between">
+            </div>
+
+        </div>
+    </form>
+
 </div>
-        
-        
+<br>
+
+<div class="container">
+    <form action="library.php" method="post">
+        <div class="row">
+            <div class="col-sm-6">
+                <input class="form-control" id="searchbar" type="text" placeholder="Author Name">
+            </div>
+            <div class="col-sm-6">
+                <input class="form-control" id="searchbar" type="text" placeholder="Institution">
+            </div>
+
+        </div>
+    </form>
+
+</div>
+<br>
+<div class="container">
+<div class="row">
+<div class="col-sm-1">
+    <button type="reset" class="btn btn-primary" onclick="searchfunk()">Search</button>
+    <script>
+        function searchfunk() {
+            var element = document.getElementById('searchbar').value;
+            var page = "library.php?search=";
+            element = page.concat(element);
+            window.location.href = element;
+        }
+    </script>
+</div>
+<div class="col-sm-1">
+    <div class="btn-group">
+        <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort By
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="library.php?sort=rel">Relevance</a>
+            <a class="dropdown-item" href="library.php?sort=date_asc">Date Ascending</a>
+            <a class="dropdown-item" href="library.php?sort=date_desc">Date Descending</a>
+            <a class="dropdown-item" href="library.php?sort=subs">Subscriber Count</a>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div class="my-table">
+    <div class="row">
+        <div class="col-xl-6 col-lg-12">
+            <div class="table-responsive">
+                <?php
+                $sort = "empty";
+                if(isset($_GET['sort'])) {
+                    $sort = $_GET['sort'];
+                }
+                $search = "empty";
+                if(isset($_GET['search'])) {
+                    $search = $_GET['search'];
+                }
+                include 'journalsearchresult.php';?>
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-12">
+            <div class="table-responsive">
+                <?php
+                $sort = "empty";
+                if(isset($_GET['sort'])) {
+                    $sort = $_GET['sort'];
+                }
+                $search = "empty";
+                if(isset($_GET['search'])) {
+                    $search = $_GET['search'];
+                }
+                include 'conferencesearchresult.php';?>
+            </div>
+        </div>
+    </div>
+
+</div>
 
        
 

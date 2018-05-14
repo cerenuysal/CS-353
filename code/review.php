@@ -43,16 +43,6 @@
 								<li class="nav-item">
                                         <a class="nav-link" href="index.php">Logout</a>
                                 </li>
-								<li class="nav-item">
-                                        <div class="dropdown">               
-                                          <div id="myDropdown" class="dropdown-content">
-                                            <form>
-                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()" required><br>
-                                            <button onclick="myFunction()" class="dropbtn">List Publication Citations</button>
-                                            </form>
-                                          </div>                    
-                                        </div>
-                                </li>
                         </u2>
                 </div>
         </nav>
@@ -60,7 +50,7 @@
         <br>
         <div class="container">
                 <div class="jumbotron">
-                        <h1 class="display-4">Review Paper</h1>
+                        <h1 class="display-4">Send your review</h1>
                         <p class="lead">Post your review assigned by your editor!</p>
                         <hr class="my-4">
                         <p> Review paper page is designed for reviewers exclusively, allowing them to post the review of assigned paper.
@@ -70,20 +60,17 @@
                         <form action="login_post.php" method="post">
                         		<div class="row">
                                         <div class="form-group col-sm-4 col-centered">
-                                                <label><b>Paper:</b> Adventure of joe</label> <br>
+                                                <label><b>Paper:</b> Origins of the species</label> <br>
                                                 <label><b>Assigned by editor:</b> Chris</label>
                                         </div>
                                 </div>
-                                
-                                <div class="row">
-                                        <div class="form-group col-sm-4 col-centered">
-                                                <label for="inputUsername">Upload your Review</label>
-                                                <label for="exampleFormControlFile1">Upload your paper</label>
-												<input type="file" class="form-control-file" id="exampleFormControlFile1" required />
-                                        </div>
-                                </div>
 
-                                <div class="row">
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                            </div>
+
+                            <div class="row">
                                         <div class="form-group col-sm-4 col-centered">
                                                 <br>
                                                 <label for="exampleInputPassword1">Confirm your password</label>

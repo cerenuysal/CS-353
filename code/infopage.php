@@ -45,6 +45,61 @@
     </div>
 </nav>
 <br>
+<div class="container">
+    <form action="library.php" method="post">
+        <div class="row">
+            <div class="col-sm-9">
+                <input class="form-control" id="searchbar" type="text" placeholder="Search journal, paper, conference">
+            </div>
+            <div class="col-sm-1">
+                <button type="reset" class="btn btn-primary" onclick="searchfunk()">Search</button>
+                <script>
+                    function searchfunk() {
+                        var element = document.getElementById('searchbar').value;
+                        var page = "infopage.php?search=";
+                        element = page.concat(element);
+                        window.location.href = element;
+                    }
+                </script>
+            </div>
+            <div class="col-sm-2">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort By
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="infopage.php?sort=rel">Relevance</a>
+                        <a class="dropdown-item" href="infopage.php?sort=date_asc">Date Ascending</a>
+                        <a class="dropdown-item" href="infopage.php?sort=date_desc">Date Descending</a>
+                        <a class="dropdown-item" href="infopage.php?sort=subs">Citations</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<br>
+
+<div class="my-table">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12">
+            <div class="table-responsive">
+                <?php
+                $sort = "empty";
+                if(isset($_GET['sort'])) {
+                    $sort = $_GET['sort'];
+                }
+                $search = "empty";
+                if(isset($_GET['search'])) {
+                    $search = $_GET['search'];
+                }
+                include 'getpublications.php';?>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

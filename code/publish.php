@@ -25,7 +25,44 @@
 
 <link rel="stylesheet" type="text/css" href="random.css">
 
-<title>Publish a Paper</title>
+    <script src="jquery.min.js"></script>
+    <title>Publish</title>
+    <script>
+        $(document).ready(function(){
+            // Variable to hold request
+            var request;
+            $("#publish_form").submit(function(event){
+                event.preventDefault();
+
+                if (request) {
+                    request.abort();
+                }
+                var $form = $(this);
+                var $inputs = $form.find("input, select, button, textarea");
+                var serializedData = $form.serialize();
+                $inputs.prop("disabled", true);
+                request = $.ajax({
+                    type: 'POST',
+                    url: "publish_req.php",
+                    data: serializedData,
+                    success: function (response) {
+                        if (response == 1)
+                        {
+                            alert("Signup successfull!");
+                            window.location.href = "index.php";
+                        }
+                        else
+                        {
+                            alert("WRONG USERNAME OR PASSWORD");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
 
 </head>
 
@@ -62,16 +99,6 @@
 								<li class="nav-item">
                                         <a class="nav-link" href="index.php">Logout</a>
                                 </li>
-								<li class="nav-item">
-                                        <div class="dropdown">               
-                                          <div id="myDropdown" class="dropdown-content">
-                                            <form>
-                                            <input type="text" placeholder="Enter Publication Name" id="myInput" onkeyup="filterFunction()" required><br>
-                                            <button onclick="myFunction()" class="dropbtn">List Publication Citations</button>
-                                            </form>
-                                          </div>                    
-                                        </div>
-                                </li>
                         </u2>
                 </div>
         </nav>
@@ -89,13 +116,11 @@
 
 <hr class="my-4">
 
-<p>Donec tempus odio vel condimentum porta. Vestibulum iaculis vehicula elementum. Curabitur eu venenatis mi, at maximus felis. Vestibulum tincidunt dignissim mi vitae congue. Sed quis consequat erat. Etiam rutrum nisi in sem blandit, vel tempus augue efficitur. Vestibulum vel accumsan metus, et luctus erat. Vivamus ac porta nibh, a vestibulum orci. </p>
-
 </div>
 
 <div class="container">
 
-<form action="login_post.php" method="post">
+<form id="publish_form">
 
 <div class="row">
 
@@ -113,15 +138,10 @@
 
 <div class="form-group col-sm-4 col-centered">
 
-<label for="inputSelect1">Select a journal</label>
+<label for="inputSelect1">Select an organization</label>
 
-<select class="form-control" name="selectedFrom" id="inputSelect1">
+<select class="form-control" name="selectedFrom" id="organization_select">
 
-<option>Journal A</option>
-
-<option>Journal B</option>
-
-<option>Journal C</option>
 
 </select>
 
@@ -134,18 +154,42 @@
 
 </div>
 
-		<div class="row">
+    <div class="row">
 
-		<div class="form-group col-sm-4 col-centered">
+        <div class="form-group col-sm-4 col-centered">
 
-		<label for="exampleFormControlFile1">Upload your paper</label>
+            <label for="url">URL</label>
 
-		<input type="file" class="form-control-file" id="exampleFormControlFile1" required>
+            <input type="text" class="form-control" name="username" id="inputUsername" placeholder="publication url" required>
 
-		</div>
+        </div>
 
-		</div>
+    </div>
+    <br>
+    <div class="row">
 
+        <div class="form-group col-sm-4 col-centered">
+
+            <label for="url">Scientific Area</label>
+
+            <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Computer Science etc.." required>
+
+        </div>
+
+    </div>
+    <br>
+
+    <div class="row">
+
+        <div class="form-group col-sm-4 col-centered">
+
+            <label for="url">Authors</label>
+
+            <input type="text" class="form-control" name="username" id="inputUsername" placeholder="Separated by comma" required>
+
+        </div>
+
+    </div>
 		<div class="row">
 
 		<div class="form-group col-sm-4 col-centered">
