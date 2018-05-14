@@ -162,7 +162,7 @@
 
 		<br>
 
-		<button type="submit" onclick="return myFunction();" class="btn btn-success">Assign</button>
+		<button type="submit" onclick="return myFunction();" class="btn btn-success">Publish</button>
 														<script>
 														function myFunction() {
 															var url = window.location.href;
