@@ -25,7 +25,7 @@ if ($search != "empty")
 {
     $whereclaus = "WHERE title LIKE '%$search%'";
 }
-$sql = "SELECT title, volume, journalDate, subscriber_count
+$sql = "SELECT journalID, title, volume, journalDate, subscriber_count
             FROM journals JOIN organizations ON ID = journalID
             $whereclaus
             ORDER BY $orderbykey;";
@@ -45,6 +45,7 @@ echo "<tbody>";
 
 		$rowcount = 0;
 		while($row = $result->fetch_assoc()) {
+		    $journalID = $row['journalID'];
 		    $title = $row['title'];
 		    $volume = $row['volume'];
 		    $journalDate = $row['journalDate'];
@@ -52,7 +53,7 @@ echo "<tbody>";
 			$rowcount = $rowcount + 1;
 			echo "<tr>";
 			echo "<th scope='row'>$rowcount</th>";
-			echo "<td><a href='infopage.php?info=$title'>$title</a></td>";
+			echo "<td><a href='infopage.php?info=$journalID'>$title</a></td>";
 			echo "<td> $volume</td>";
 			echo "<td> $journalDate </td>";
 			echo "<td> $subsCount </td>";

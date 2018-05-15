@@ -9,7 +9,8 @@ $sql = "SELECT * FROM users WHERE username = '$username' AND password = '$passwo
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "1";
+    $row = $result->fetch_assoc();
+    echo $row['privilege_level'];
 } else {
     echo "-1";
 }

@@ -23,14 +23,9 @@ if ($sort != "empty")
             break;
     }
 }
-$whereclaus = "";
-if ($search != "empty")
-{
-    $whereclaus = "WHERE title LIKE '%$search%'";
-}
+
 $sql = "SELECT conferenceID,title, conferenceDate, country, city_name, subscriber_count
             FROM conferences JOIN organizations ON ID = conferenceID
-            $whereclaus
             ORDER BY $orderbykey;";
 $result = $conn->query($sql);
 echo "<table class = 'table table-bordered table-hover'>";

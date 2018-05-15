@@ -68,9 +68,6 @@
         }
 
         include 'retrievepaper.php';?>
-
-
-
     </div>
 
 </div>

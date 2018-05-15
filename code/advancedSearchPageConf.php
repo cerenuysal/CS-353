@@ -43,66 +43,60 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <u2 class="navbar-nav">
-                                <li class="nav-item">
-                                        <a class="nav-link" href="publish.php">Publish</a>
-                                </li>
-								<li class="nav-item">
-                                        <a class="nav-link" href="library.php">Library</a>
-                                </li>                               
-                                <li class="nav-item">
-                                        <a class="nav-link" href="about.php">About</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="assign.php">Assign</a>
-                                </li>
-                                  <li class="nav-item">
-                                        <a class="nav-link" href="review.php">Review</a>
-                                </li>
-                                 <li class="nav-item">
-                                        <a class="nav-link" href="endorsement.php">Endorsement</a>
-                                </li>
-                                <li class="nav-item active">
-                                        <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
-                                </li>
-								<li class="nav-item">
-                                        <a class="nav-link" href="about.php">Logout</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="publish.php">Submit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="submissions.php">Submissions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="library.php">Library</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="assign.php">Assign</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="review.php">Review</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="endorsement.php">Endorsement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">Logout</a>
+                            </li>
                         </u2>
                 </div>
         </nav>
 
 <body>
 <br>
+<form id = "search_form">
 <div class="container">
-    <form action="library.php" method="post">
         <div class="row">
             <div class="col-sm-6">
-                <input class="form-control" id="searchbar" type="text" placeholder="Organization title">
+                <input class="form-control" id="organizationbar" type="text" placeholder="Organization title">
             </div>
             <div class="col-sm-6">
-                <input class="form-control" id="searchbar" type="text" placeholder="Date between">
+                <p>Date</p>
+                From: <input type="date" id="fromdateid" name="fromdate">
+                Up to: <input type="date" id="uptodateid" name="uptodate">
             </div>
 
         </div>
-    </form>
 
 </div>
 <br>
-
 <div class="container">
-    <form action="library.php" method="post">
         <div class="row">
             <div class="col-sm-6">
-                <input class="form-control" id="searchbar" type="text" placeholder="Author Name">
+                <input class="form-control" id="authorbar" type="text" placeholder="Author Name">
             </div>
-            <div class="col-sm-6">
-                <input class="form-control" id="searchbar" type="text" placeholder="Institution">
-            </div>
-
         </div>
-    </form>
-
 </div>
+
 <br>
 <div class="container">
 <div class="row">
@@ -110,23 +104,27 @@
     <button type="reset" class="btn btn-primary" onclick="searchfunk()">Search</button>
     <script>
         function searchfunk() {
-            var element = document.getElementById('searchbar').value;
-            var page = "library.php?search=";
-            element = page.concat(element);
-            window.location.href = element;
+            var organizationbar = document.getElementById('organizationbar').value;
+            var fromdateid = document.getElementById('fromdateid').value;
+            var uptodateid = document.getElementById('uptodateid').value;
+            var authorbar = document.getElementById('authorbar').value;
+            var page = "advancedSearchPageConf.php?org=" + organizationbar
+            + "from=" + fromdateid + "upto=" + uptodateid + "auth=" + authorbar ;
+            window.location.href = page;
         }
     </script>
 </div>
+</form>
 <div class="col-sm-1">
     <div class="btn-group">
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sort By
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="library.php?sort=rel">Relevance</a>
-            <a class="dropdown-item" href="library.php?sort=date_asc">Date Ascending</a>
-            <a class="dropdown-item" href="library.php?sort=date_desc">Date Descending</a>
-            <a class="dropdown-item" href="library.php?sort=subs">Subscriber Count</a>
+            <a class="dropdown-item" href="advancedSearchPageConf.php?sort=rel">Relevance</a>
+            <a class="dropdown-item" href="advancedSearchPageConf.php?sort=date_asc">Date Ascending</a>
+            <a class="dropdown-item" href="advancedSearchPageConf.php?sort=date_desc">Date Descending</a>
+            <a class="dropdown-item" href="advancedSearchPageConf.php?sort=subs">Subscriber Count</a>
 
         </div>
     </div>
@@ -137,16 +135,29 @@
     <div class="row">
         <div class="col-xl-6 col-lg-12">
             <div class="table-responsive">
+
                 <?php
                 $sort = "empty";
                 if(isset($_GET['sort'])) {
                     $sort = $_GET['sort'];
                 }
-                $search = "empty";
-                if(isset($_GET['search'])) {
-                    $search = $_GET['search'];
+                $org = "empty";
+                if(isset($_GET['org'])) {
+                    $org = $_GET['org'];
                 }
-                include 'journalsearchresult.php';?>
+                $from = "empty";
+                if(isset($_GET['from'])) {
+                    $from = $_GET['from'];
+                }
+                $upto = "upto=";
+                if(isset($_GET['upto'])) {
+                    $upto = $_GET['upto'];
+                }
+                $auth = "auth=";
+                if(isset($_GET['auth'])) {
+                    $auth = $_GET['auth'];
+                }
+                include 'advance_result.php';?>
             </div>
         </div>
         <div class="col-xl-6 col-lg-12">
@@ -156,11 +167,23 @@
                 if(isset($_GET['sort'])) {
                     $sort = $_GET['sort'];
                 }
-                $search = "empty";
-                if(isset($_GET['search'])) {
-                    $search = $_GET['search'];
+                $org = "empty";
+                if(isset($_GET['org'])) {
+                    $org = $_GET['org'];
                 }
-                include 'conferencesearchresult.php';?>
+                $from = "empty";
+                if(isset($_GET['from'])) {
+                    $from = $_GET['from'];
+                }
+                $upto = "upto=";
+                if(isset($_GET['upto'])) {
+                    $upto = $_GET['upto'];
+                }
+                $auth = "auth=";
+                if(isset($_GET['auth'])) {
+                    $auth = $_GET['auth'];
+                }
+                include 'advance_conf.php';?>
             </div>
         </div>
     </div>

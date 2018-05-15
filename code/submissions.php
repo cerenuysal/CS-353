@@ -29,9 +29,6 @@
                 <a class="nav-link" href="library.php">Library</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="about.php">About</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="assign.php">Assign</a>
             </li>
             <li class="nav-item active">
@@ -91,20 +88,9 @@
 <div class="my-table">
     <div class="row">
         <div class="col-xl-12 col-lg-12">
-            <?php
-            $info = "empty";
-            if (isset($_GET['info'])) {
-                $info = $_GET['info'];
-            }
-            echo "<p> </p>";
-            ?>
             <div class="table-responsive">
-                <?php
-                $info = "empty";
-                if (isset($_GET['info'])) {
-                    $info = $_GET['info'];
-                }
-                include 'getpublications.php'; ?>
+
+                <?php include 'getSubmissions.php'; ?>
             </div>
         </div>
     </div>

@@ -107,9 +107,10 @@ CREATE TABLE conferences(
 
 CREATE TABLE publications (
 	ID INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	title VARCHAR(100) NOT NULL,
+	title VARCHAR(100) NOT NULL UNIQUE,
 	publicationDate DATE NOT NULL,
 	citationCount INT DEFAULT 0,
+	status int DEFAULT 0,
 	weblink VARCHAR(200)
 );
 
@@ -256,14 +257,8 @@ CREATE TABLE submitted (
 	PRIMARY KEY (organizationID, publicationID)
 );
 
-CREATE VIEW paperview AS
-SELECT authorID, name, lastname,publications.ID, publications.publicationDate, organizationID, publications.title as PublicationTitle, o.title as OrganizationTitle, users.mail,
-publications.weblink
-FROM publications
-	LEFT JOIN submitted s on publicationS.ID = S.publicationID
-	LEFT JOIN organizations o on s.organizationID = o.ID
-  LEFT JOIN publicationAuthors Author on publications.ID = Author.pubID
-	LEFT JOIN  users on  users.ID  = Author.authorID;
+
+
 CREATE TABLE skills (
 	expertise VARCHAR(100) NOT NULL,
 	degree VARCHAR(20),
@@ -287,6 +282,14 @@ CREATE TABLE endorsement(
 	PRIMARY KEY (endorserID, endorseeID, expertise)
 );
 
+CREATE VIEW paperview AS
+	SELECT authorID, name, lastname,publications.ID, publications.publicationDate, organizationID, publications.title as PublicationTitle, o.title as OrganizationTitle, users.mail,
+		publications.weblink
+	FROM publications
+		LEFT JOIN submitted s on publications.ID = s.publicationID
+		LEFT JOIN organizations o on s.organizationID = o.ID
+		LEFT JOIN publicationAuthors Author on publications.ID = Author.pubID
+		LEFT JOIN  users on  users.ID  = Author.authorID;
 DROP TRIGGER IF EXISTS userInsert_trigger;
 
 delimiter |
@@ -309,17 +312,25 @@ delimiter ;
 
 
 INSERT INTO users (mail, username, name, lastname,password, privilege_level)
-VALUES ('okaanagac@gmail.com', 'CynicalApe', 'oguz', 'agac','1234', 3),
-	('atpug@gmail.com', 'aptup','alptug','albayra', '1235', 0),
+VALUES
+	('okaanagac@gmail.com', 'CynicalApe', 'oguz', 'agac','1234', 3),
+	('arifusta@gmail.com', 'ustaarif', 'arif', 'usta','1234', 3),
+	('cagritoraman@gmail.com', 'ctoraman', 'cagri', 'toraman','1234', 3),
+	('jbonamassa@gmail.com', 'joex', 'joe', 'bonamassa','1234', 3),
+	('clapton@gmail.com', 'ericc', 'eric', 'clapton','1234', 3),
+	('carlin@gmail.com', 'gcarlin', 'george', 'carlin','1234', 3),
+	('hiks@gmail.com', 'billhicks', 'bill', 'hicks','1234', 3),
+	('rzant@gmail.com', 'rzant', 'ronnie', 'zant','1234', 3),
+	('atpug@gmail.com', 'aptup','alptug','albayra', '1235', 1),
 	('anotherone@gmail.com', 'khaleed','dj', 'khaleed', '1234', 0),
-	('scrap@yahoo.com', 'alloy"', 'elizabeth', 'sobeck', '111', 1),
+	('scrap@yahoo.com', 'alloy', 'elizabeth', 'sobeck', '111', 1),
 	('bondjames@gmail.com','jb','james', 'bond', '007', 2),
-	('randomauthor1@gmail.com','ra1','randomname1', 'randomlastname1', '000', 1),
-	('randomauthor2@gmail.com','ra2','randomname2', 'randomlastname2', '000', 1),
-	('randomauthor3@gmail.com','ra3','randomname3', 'randomlastname3', '000', 1),
-	('randomauthor4@gmail.com','ra4', 'randomname4', 'randomlastname4','000', 1),
-	('randomauthor5@gmail.com','ra5', 'randomname5', 'randomlastname5','000', 1),
-	('randomauthor6@gmail.com','ra6','randomname6', 'randomlastname6', '000', 1);
+	('arthur@gmail.com','ra1','arthur', 'clark', '000', 1),
+	('joe@gmail.com','ra2','joe', 'rain', '000', 1),
+	('stevens@gmail.com','ra3','eric', 'stevens', '000', 1),
+	('phill@gmail.com','ra4', 'ben', 'phill','000', 1),
+	('cim@gmail.com','ra5', 'ahmet', 'cim','000', 1),
+	('yilmaz@gmail.com','ra6','mehmet', 'yilmaz', '000', 1);
 
 
 INSERT INTO organizations (title)
@@ -333,36 +344,47 @@ VALUES
 	('International conference on Data Analysis and Cloud Computing'),
 	('ACM SIGGRAPH');
 
+INSERT INTO manages (organizationID, editorID)
+VALUES
+	(1, 2),
+	(2, 1),
+	(3, 3),
+	(4,4),
+	(5, 5),
+	(6,6),
+	(7,7),
+	(8,8);
+
 INSERT INTO journals(journalID, volume, journalDate, subscriber_count)
 VALUES
-	('1', 10, '2017-8-21', 0),
-	('2', 5, '2014-2-12', 0),
-	('3', 9, '2015-1-14', 0),
-	('4', 3, '2017-11-4', 0);
+	('1', 10, '2017-8-21', 145),
+	('2', 5, '2014-2-12', 12),
+	('3', 9, '2015-1-14', 56),
+	('4', 3, '2017-11-4', 21);
 
 INSERT INTO conferences(conferenceID, conferenceDate, subscriber_count, country, city_name, weblink)
 VALUES
-	('5', '2018-9-21', 0, 'ITALY', 'ROME','https://datamining.conferenceseries.com/'),
-	('6', '2018-9-30', 0, 'JAPAN','TOKYO','https://computergraphics-gamedesign.conferenceseries.com'),
-	('7', '2018-10-6', 0, 'UK','LONDON','https://cloud-computing.conferenceseries.com/'),
-	('8', '2018-9-12', 0, 'CANADA','VANCOUVER', 'https://s2018.siggraph.org/');
+	('5', '2018-9-19', 5, 'ITALY', 'ROME','https://datamining.conferenceseries.com/'),
+	('6', '2018-9-30', 123, 'JAPAN','TOKYO','https://computergraphics-gamedesign.conferenceseries.com'),
+	('7', '2018-10-6', 467, 'UK','LONDON','https://cloud-computing.conferenceseries.com/'),
+	('8', '2018-9-12', 12, 'CANADA','VANCOUVER', 'https://s2018.siggraph.org/');
 
-INSERT INTO publications(ID, title, publicationDate, citationCount, weblink)
+INSERT INTO publications(ID, title, publicationDate, citationCount, status, weblink)
 VALUES
-	(555, 'testpublication1', '2000-12-3', '12', 'testurl1.com'),
-	(666, 'testpublication2', '2002-11-4', '10', 'testurl2.com'),
-	(777, 'testpublication3', '2005-4-2', '9', 'testurl3.com'),
-	(888, 'testpublication4', '2000-9-2', '15', 'testurl4.com');
+	(555, 'testpublication1', '2018-9-20', '12',1, 'testurl1.com'),
+	(666, 'testpublication2', '2018-9-21', '10', 1,'testurl2.com'),
+	(777, 'testpublication3', '2018-9-25', '9', 1,'testurl3.com'),
+	(888, 'testpublication4', '2018-9-30', '15', 1,'testurl4.com');
 
 INSERT INTO publicationAuthors(pubID, authorID)
 VALUES
-	(555,6),
-	(555,7),
-	(666,7),
-	(777,8 ),
-	(777,9 ),
-	(777,10 ),
-	(888,11 );
+	(555,13),
+	(555,14),
+	(666,14),
+	(777,15 ),
+	(777,16),
+	(777,17 ),
+	(888,18 );
 
 INSERT INTO submitted (organizationID, publicationID)
 VALUES
@@ -374,4 +396,9 @@ VALUES
 INSERT INTO publicationArea(publicationID, scientificArea)
 		VALUES
 			(555, 'Computer Science'),
-			(555, 'Bioinformatic');
+			(555, 'Bioinformatic'),
+			(666, 'Computer Graphics'),
+			(777, 'Data mining'),
+			(888, 'Machine Learning'),
+			(888, 'AI'),
+			(888, 'Neural Network');

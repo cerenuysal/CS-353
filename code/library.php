@@ -17,31 +17,30 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <u2 class="navbar-nav">
-                                <li class="nav-item">
-                                        <a class="nav-link" href="publish.php">Publish</a>
-                                </li>
-								<li class="nav-item active">
-                                        <a class="nav-link" href="library.php">Library</a>
-                                </li>                               
-                                <li class="nav-item">
-                                        <a class="nav-link" href="about.php">About</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="assign.php">Assign</a>
-                                </li>
-                                  <li class="nav-item">
-                                        <a class="nav-link" href="review.php">Review</a>
-                                </li>
-                                 <li class="nav-item">
-                                        <a class="nav-link" href="endorsement.php">Endorsement</a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
-                                </li>
-								<li class="nav-item">
-                                        <a class="nav-link" href="logout.php">Logout</a>
-                                </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="publish.php">Submit</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="submissions.php">Submissions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="library.php">Library</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="assign.php">Assign</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="review.php">Review</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="endorsement.php">Endorsement</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="advancedSearchPageConf.php">Advanced Search</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php">Logout</a>
+                            </li>
                         </u2>
                 </div>
         </nav>

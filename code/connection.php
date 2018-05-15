@@ -1,7 +1,7 @@
 <?php
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
+$servername = "dijkstra.ug.bcc.bilkent.edu.tr";
+$username = "okaanagac";
+$password = "c7rujc9w7";
 
 
     // Create connection
@@ -11,6 +11,6 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "use paper";
+    $sql = "use okaanagac";
     $result = $conn->query($sql);
 ?>

@@ -9,7 +9,59 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="random.css">
-        <title>Publish a Paper</title>
+        <title>Review</title>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Variable to hold request
+            var request;
+            $("#assign_form").submit(function (event) {
+                event.preventDefault();
+
+                if (request) {
+                    request.abort();
+                }
+                var $form = $(this);
+                var $inputs = $form.find("input, select, button, textarea");
+                var serializedData = $form.serialize();
+                $inputs.prop("disabled", true);
+                request = $.ajax({
+                    type: 'POST',
+                    url: "assign_req.php",
+                    data: serializedData,
+                    success: function (response) {
+                        if (response == 1) {
+                            alert("Successful!");
+                            window.location.href = "assign.php";
+                        }
+                        else if (response == -1)  {
+                            alert("paper couldn't be found");
+                            window.location.href = "assign.php";
+                        }
+                        else if (response == -2)  {
+                            alert("Organization couldn't be found");
+                            window.location.href = "assign.php";
+                        }
+                        else if (response == -3)  {
+                            alert("editor not found.");
+                            window.location.href = "assign.php";
+                        }
+                        else if (response == -4)  {
+                            alert("reviewer not found.");
+                            window.location.href = "assign.php";
+                        }
+                        else {
+                            alert(response);
+                            window.location.href = "assign.php";
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(textStatus, errorThrown);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -20,13 +72,13 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <u2 class="navbar-nav">
                                 <li class="nav-item">
-                                        <a class="nav-link" href="publish.php">Publish</a>
+                                        <a class="nav-link" href="publish.php">Submit</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="submissions.php">Submissions</a>
                                 </li>
 								<li class="nav-item">
                                         <a class="nav-link" href="library.php">Library</a>
-                                </li>                               
-                                <li class="nav-item">
-                                        <a class="nav-link" href="about.php">About</a>
                                 </li>
                                 <li class="nav-item">
                                         <a class="nav-link" href="assign.php">Assign</a>
@@ -43,6 +95,7 @@
 								<li class="nav-item">
                                         <a class="nav-link" href="index.php">Logout</a>
                                 </li>
+
                         </u2>
                 </div>
         </nav>
@@ -57,13 +110,17 @@
                         </p>
                 </div>
                 <div class="container">
-                        <form action="login_post.php" method="post">
-                        		<div class="row">
-                                        <div class="form-group col-sm-4 col-centered">
-                                                <label><b>Paper:</b> Origins of the species</label> <br>
-                                                <label><b>Assigned by editor:</b> Chris</label>
-                                        </div>
-                                </div>
+                        <form action="#" method="post">
+                            <div class="form-group col-sm-4 col-centered">
+                                <label for="inputSelect1">Assigned Papers</label>
+                                <select class="form-control" name="$assignedPapers" id="paper_select" required>
+                                    <?php
+                                    include 'assignedpaperfill.php';
+                                    ?>
+                                </select>
+                                <br>
+                            </div>
+
 
                             <div class="form-group">
                                 <label for="comment">Comment:</label>
@@ -76,17 +133,7 @@
                                                 <label for="exampleInputPassword1">Confirm your password</label>
                                                 <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required />                                               
 												<br>
-												<button type="submit" onclick="return myFunction();" class="btn btn-success">Post review</button>
-												<script>
-												function myFunction() {
-													var url = window.location.href;
-													if (confirm("Are you sure ?")) {
-															txt = "You pressed OK!";
-													} else {
-															return false;
-													}
-												}
-												</script>                                               
+												<button type="submit" class="btn btn-success">Post review</button>
                                         </div>
                                 </div>
                         </form>
